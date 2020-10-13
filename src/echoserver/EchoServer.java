@@ -1,4 +1,6 @@
 package echoserver;
+import java.net.*;
+import java.io.*;
 
 public class EchoServer {
     public static final int portNumber = 6013;
@@ -13,14 +15,14 @@ public class EchoServer {
         // Wait until someone connects
         Socket client = sock.accept();
 
-        InputStream input = new InputStreamReader(client.getInpitStream());
+       InputStream input = client.getInputStream();
         int b = input.read();
 
-        OutputStream output = new OutputStreamWriter(client.getOutputStream());
+        OutputStream output = client.getOutputStream();
 
         // Send the current input back to the client.
-        output.flush(b);
-        output.write(b)
+        output.flush();
+        output.write(b);
 
         // Close the client socket since we're done.
         input.close();
